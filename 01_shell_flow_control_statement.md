@@ -819,6 +819,44 @@ cal
 
 ```
 
+或者：
+#!/bin/bash
+read -p "请输入您的出生年月日：" bir
+day=`date "+%Y%m%d"`
+year=`expr substr ${day} 1 4`
+birth=`date -d "$bir" +%Y%m%d`
+birthday=`expr substr ${birth} 5 4`
+bir_this=$year$birthday
+bir_next=`date -d  "$bir_this +1year" +%Y%m%d`
+date_ch(){
+        date -d $1 +%s
+}
+#today=`date -d $day +%s`
+
+#bir_this_year=`date -d "${bir_this}" +%s`
+
+#bir_next_year=`date -d "${bir_next}" +%s`
+
+ 
+
+today=`date_ch $day`
+bir_this_year=`date_ch $bir_this`
+bir_next_year=`date_ch $bir_next`
+daydiff(){
+        stampDiff=`expr $1 - $2`
+        dayDiff=`expr $stampDiff / 86400`
+        echo "您还有$dayDiff天过生日！"
+}
+if [ $bir_this_year -gt $today ]
+        then daydiff $bir_this_year $today
+elif [ $bir_this_year -eq $today ]
+then
+    echo "您今天过生日！"
+elif [ $bir_this_year -lt $today ]
+        then daydiff $bir_next_year $today
+fi
+
+
 
 ```bash
 [root@client0 ~]# cat booboo
