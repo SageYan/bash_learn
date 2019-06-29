@@ -817,8 +817,6 @@ fi
 
 cal
 
-```
-
 或者：
 #!/bin/bash
 read -p "请输入您的出生年月日：" bir
@@ -855,6 +853,11 @@ then
 elif [ $bir_this_year -lt $today ]
         then daydiff $bir_next_year $today
 fi
+
+
+
+```
+
 
 
 
