@@ -672,6 +672,17 @@ done
 
 ```shell
 break 作用于循环语句中 代表直接跳出该循环 .
+
+for i in {1..100}
+do
+        a=$(($i%7))
+        b=$(($i%5))
+        while [ $a -eq 0 -a $b -ne 0 ]
+        do
+                echo $i
+                break
+        done
+done
 ```
 
 #### 课堂练习
