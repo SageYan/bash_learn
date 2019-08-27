@@ -255,30 +255,16 @@ do
 	uid=`grep ^$i /etc/passwd |cut -d ":" -f 3 2>/dev/null`
 	echo "hello $username,your uid is $uid"
 done
-[root@client47 ~]# bash for1.sh
-系统中一共有：22个用户
-hello root,your uid is 0
-hello bin,your uid is 1
-hello daemon,your uid is 2
-hello adm,your uid is 3
-hello lp,your uid is 4
-hello sync,your uid is 5
-hello shutdown,your uid is 6
-hello halt,your uid is 7
-hello mail,your uid is 8
-hello operator,your uid is 11
-hello games,your uid is 12
-hello ftp,your uid is 14
-hello nobody,your uid is 99
-hello avahi-autoipd,your uid is 170
-hello systemd-bus-proxy,your uid is 999
-hello systemd-network,your uid is 998
-hello dbus,your uid is 81
-hello polkitd,your uid is 997
-hello tss,your uid is 59
-hello postfix,your uid is 89
-hello sshd,your uid is 74
-hello student,your uid is 1000
+
+#!/bin/bash
+num=`cat /etc/passwd|wc -l`
+echo "总共有$num个用户！"
+for i in `seq 1 $num`
+do
+        user=`head -n $i /etc/passwd|tail -n 1|cut -d : -f 1`
+        uid=`head -n $i /etc/passwd|tail -n 1|cut -d : -f 3`
+        echo "hello your name is $user your id is  $uid"
+done
 
 [root@client47 ~]# cat for2.sh
 #!/bin/bash
@@ -288,28 +274,7 @@ do
 done
 
 echo /var目录中一共有`ls -l /var/|wc -l`个文件
-[root@client47 ~]# bash for2.sh
-hello adm
-hello cache
-hello crash
-hello db
-hello empty
-hello games
-hello gopher
-hello kerberos
-hello lib
-hello local
-hello lock
-hello log
-hello mail
-hello nis
-hello opt
-hello preserve
-hello run
-hello spool
-hello tmp
-hello yp
-/var目录中一共有21个文件
+
 
 [root@client47 ~]# cat for3.sh
 #!/bin/bash
