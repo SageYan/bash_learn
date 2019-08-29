@@ -260,6 +260,8 @@ bin,/bin/sh
 sys,/bin/sh
 ....
 blue,/bin/nosh
+
+awk -F ":" '{printf "hello %s,your id is %s\n",$1,$4}' /etc/passwd
 ```
 
 
