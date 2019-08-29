@@ -36,8 +36,13 @@ sed 流编辑器 针对行进行操作的
 * sed [-options] '[哪些行][干什么]' filename
 
 ```shell
+
+1)参数options
+    -n 不输出所有的行
+    -i 直接修改目标文件
+    -e 连接多个cmd
 cmd
-    操作定位（哪一行）
+2)操作定位（哪一行）
         1    第一行
         2,3    从第二行到第三行
         $    最后一行
@@ -52,18 +57,14 @@ cmd
         4. 组合方式
         5. 特殊方式
 
-
-    函数（干什么）
+3)函数（干什么）
         p    打印，输出到屏幕上
         d    删除
         s    替换                   sed '/^#/s/\/\*.*\*\///' file  
         a    当前行的行后，添加一行    sed '1ahello word' file
         i    当前行的行前，添加一行    sed '1ihello word' file
              sed '/^telegraf/inihao\nwohao' /tmp/passwd 
-参数options
-    -n 不输出所有的行
-    -i 直接修改目标文件
-    -e 连接多个cmd
+
 
 简单控制流
 
