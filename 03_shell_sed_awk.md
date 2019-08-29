@@ -146,7 +146,9 @@ hello1hello2hello3,babay
 
 ```shell
 1. 将selinux设置成开机关闭状态。用sed完成
+[root@DBtest tmp]# sed 's/disabled$/enforcing/' /tmp/se.txt 
 2. 设置当前用户的umask值永久生效为033 ~/.bashrc。用sed完成
+[lucy@DBtest ~]$ sed '$aexport umask=033' .bashrc
 3. 用脚本实现自动化搭建DNS服务器，并自动化配置解析，自动化测试。
 ```
 
